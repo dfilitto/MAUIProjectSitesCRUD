@@ -1,1 +1,1 @@
-C:\Users\danilo.filitto\source\repos\ControleDeSites\ControleDeSites\ControleDeSites.csproj;x64
+C:\Users\danilo.filitto\source\repos\MAUIProjectSitesCRUD\BancoLocal\ControleDeSites\ControleDeSites\ControleDeSites.csproj;x64

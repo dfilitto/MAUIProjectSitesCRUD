@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PTXQ3FQgc3b4n/HTFtp5wxjmYmwx070aWBGbXN5SZjGvlbeWSOSYOXJpbwh8worAgg8rlkrV2768PX+/BwPZ+A==",
+  "dgSpecHash": "5S2T0KTdmuKF4aTB5e+HvxL+zPMUrR3ybquUnkUOkVYmb01IIFNCkaar1IECxCYlZceqXfI5YuLujetMRtDiKQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\danilo.filitto\\source\\repos\\ControleDeSites\\ControleDeSites\\ControleDeSites.csproj",
+  "projectFilePath": "C:\\Users\\danilo.filitto\\source\\repos\\MAUIProjectSitesCRUD\\BancoLocal\\ControleDeSites\\ControleDeSites\\ControleDeSites.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\danilo.filitto\\.nuget\\packages\\googlegson\\2.9.0.1\\googlegson.2.9.0.1.nupkg.sha512",
     "C:\\Users\\danilo.filitto\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.1\\microsoft.extensions.configuration.6.0.1.nupkg.sha512",

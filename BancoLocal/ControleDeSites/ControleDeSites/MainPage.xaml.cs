@@ -10,6 +10,7 @@ public partial class MainPage : ContentPage
 	public MainPage()
 	{
 		InitializeComponent();
+        CriarBanco();
 	}
 
     public void ListarSites()
@@ -18,7 +19,7 @@ public partial class MainPage : ContentPage
         ListaClv.ItemsSource = lista;
     }
 
-    private void criarBancoBtn_Clicked(object sender, EventArgs e)
+    private void CriarBanco()
     {
 		dbPath = System.IO.Path.Combine(FileSystem.AppDataDirectory,"sites.db3");
 		conn = new SQLiteConnection(dbPath);
@@ -33,7 +34,15 @@ public partial class MainPage : ContentPage
         //int id = Convert.ToInt32(idEnt.Text);
         //string endereco = siteEnt.Text;
         Site site = new Site();
-        site.Endereco = siteEnt.Text;
+        if (Uri.TryCreate(siteEnt.Text, UriKind.Absolute, out Uri urlResult))
+        {
+            site.Endereco = siteEnt.Text;
+        }
+        else
+        {
+            DisplayAlert("Erro", "Informe um endereço correto", "OK");
+            return;
+        }
 
         //realizar as operações
         try 
@@ -54,44 +63,75 @@ public partial class MainPage : ContentPage
     private void alterarBtn_Clicked(object sender, EventArgs e)
     {
         Site site = new Site();
-        site.Id = Convert.ToInt32(idEnt.Text);
-        site.Endereco = siteEnt.Text;
+        if (int.TryParse(idEnt.Text, out int id))
+        {
+            site.Id = id;
+        }
+        else
+        {
+            DisplayAlert("Erro", "Informe apenas números para o código", "OK");
+            return;
+        }
 
-        conn.Update(site);
-        idEnt.Text = "";
-        siteEnt.Text = "";
-        DisplayAlert("Update",
-            "Registro atualizado com sucesso!!!", "OK");
-        ListarSites();
+        if (Uri.TryCreate(siteEnt.Text, UriKind.Absolute, out Uri urlResult))
+        {
+            site.Endereco = siteEnt.Text;
+        }
+        else
+        {
+            DisplayAlert("Erro", "Informe um endereço correto", "OK");
+            return;
+        }
+
+        try
+        {
+            int qtd = conn.Update(site);
+            idEnt.Text = "";
+            siteEnt.Text = "";
+            if (qtd > 0) DisplayAlert("Update","Registro atualizado com sucesso!!!", "OK");
+            else DisplayAlert("Update", "O código não existe!!!!!", "OK");
+            ListarSites();
+        } catch
+        {
+            DisplayAlert("Erro","Site já cadastrado", "OK");
+        }
     }
 
-    private void excluirBtn_Clicked(object sender, EventArgs e)
+    private async void excluirBtn_Clicked(object sender, EventArgs e)
     {
-        int id = Convert.ToInt32(idEnt.Text);
-        conn.Delete<Site>(id);
-        idEnt.Text = "";
-        siteEnt.Text = "";
-        DisplayAlert("Delete",
-            "Registro deletado com sucesso!!!", "OK");
-        ListarSites();
+        if (int.TryParse(idEnt.Text, out int id)== false)
+        { 
+            await DisplayAlert("Erro", "Informe apenas números para o código", "OK");
+            return;
+        }
+        bool resp = await DisplayAlert("Excluir", "Deseja excluir?", "Sim","Não");
+        if (resp)
+        {
+            conn.Delete<Site>(id);
+            idEnt.Text = "";
+            siteEnt.Text = "";
+            await DisplayAlert("Delete","Registro deletado com sucesso!!!", "OK");
+            ListarSites();
+        }
     }
 
     private void localizarBtn_Clicked(object sender, EventArgs e)
     {
-        int id = Convert.ToInt32(idEnt.Text);
         string endereco = siteEnt.Text;
 
         var sites = from s in conn.Table<Site>()
-                    where s.Id == id
+                    where s.Endereco.Contains(endereco)
                     select s;
 
-        //var sites = from s in conn.Table<Site>()
-        //            where s.Endereco == endereco
-        //            select s;
-
-        Site site = sites.First();
-        idEnt.Text = site.Id.ToString();
-        siteEnt.Text = site.Endereco;
+        if(sites.Count() <= 0)
+        {
+            ListarSites();
+        }
+        else
+        {
+            List<Site> lista = sites.ToList();
+            ListaClv.ItemsSource = lista;
+        }
     }
 
     private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -106,11 +146,19 @@ public partial class MainPage : ContentPage
 
     private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
     {
-        var label = sender as Label;
-        if (label != null && label.BindingContext is Site item)
-        {
-            Launcher.OpenAsync(new Uri(item.Endereco));
+        try 
+        { 
+            var label = sender as Label;
+            if (label != null && label.BindingContext is Site item)
+            {
+                Launcher.OpenAsync(new Uri(item.Endereco));
+            }
         }
+        catch(Exception ex)
+        {
+            DisplayAlert("Erro", "Endereço incorreto", "OK");
+        }
+        
     }
 }
 

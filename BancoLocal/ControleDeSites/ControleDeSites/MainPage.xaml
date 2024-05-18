@@ -13,11 +13,7 @@
                 Source="dotnet_bot.png"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
-            <Button
-                x:Name="criarBancoBtn"
-                Text="Criar Banco de dados"
-                Clicked="criarBancoBtn_Clicked"
-                />
+            
             <VerticalStackLayout 
                 x:Name="itensVsl"
                 IsVisible="false"

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\danilo.filitto\\source\\repos\\ControleDeSites\\ControleDeSites\\ControleDeSites.csproj": {}
+    "C:\\Users\\danilo.filitto\\source\\repos\\MAUIProjectSitesCRUD\\BancoLocal\\ControleDeSites\\ControleDeSites\\ControleDeSites.csproj": {}
   },
   "projects": {
-    "C:\\Users\\danilo.filitto\\source\\repos\\ControleDeSites\\ControleDeSites\\ControleDeSites.csproj": {
+    "C:\\Users\\danilo.filitto\\source\\repos\\MAUIProjectSitesCRUD\\BancoLocal\\ControleDeSites\\ControleDeSites\\ControleDeSites.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\danilo.filitto\\source\\repos\\ControleDeSites\\ControleDeSites\\ControleDeSites.csproj",
+        "projectUniqueName": "C:\\Users\\danilo.filitto\\source\\repos\\MAUIProjectSitesCRUD\\BancoLocal\\ControleDeSites\\ControleDeSites\\ControleDeSites.csproj",
         "projectName": "ControleDeSites",
-        "projectPath": "C:\\Users\\danilo.filitto\\source\\repos\\ControleDeSites\\ControleDeSites\\ControleDeSites.csproj",
+        "projectPath": "C:\\Users\\danilo.filitto\\source\\repos\\MAUIProjectSitesCRUD\\BancoLocal\\ControleDeSites\\ControleDeSites\\ControleDeSites.csproj",
         "packagesPath": "C:\\Users\\danilo.filitto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\danilo.filitto\\source\\repos\\ControleDeSites\\ControleDeSites\\obj\\",
+        "outputPath": "C:\\Users\\danilo.filitto\\source\\repos\\MAUIProjectSitesCRUD\\BancoLocal\\ControleDeSites\\ControleDeSites\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
